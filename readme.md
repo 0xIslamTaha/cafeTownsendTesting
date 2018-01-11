@@ -34,7 +34,7 @@ export PYTHONPATh='./'
 nosetests-3.4 -sv --logging-level=WARNING --rednose --tc-file=config.ini testcases
 ```
 
-## Latest execution reports:
+## Latest execution report:
 ```bash
 ⇒  nosetests-3.4 -vs --rednose testcases --tc-file config.ini --logging-level WARNING
 CAFEE-001 ... passed
@@ -86,7 +86,7 @@ Admin can update user data with invaild start date.
         """
 ```
 
-** Execute this test case command**
+**Command to execute this test case**
 ```bash
 cd cafeTownsendTesting
 export PYTHONPATh='./'
