@@ -1,4 +1,4 @@
-import unittest, time, uuid, random
+import unittest, time, uuid, random, logging
 from selenium import webdriver
 from testconfig import config
 from termcolor import colored
@@ -9,6 +9,12 @@ from selenium.webdriver.support.wait import WebDriverWait
 
 
 class BaseTest(unittest.TestCase):
+    logger = logging.getLogger(__name__)
+    logger.setLevel(logging.INFO)
+    handler = logging.FileHandler('cafeTownsendTesting.log')
+    handler.setLevel(logging.INFO)
+    logger.addHandler(handler)
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.url = config['main']['url']
@@ -16,6 +22,7 @@ class BaseTest(unittest.TestCase):
         self.password = config['main']['password']
         self.browser = config['main']['browser']
         self.elements = elements
+        self.logger = BaseTest.logger
 
     def setUp(self):
         self.driver = self.set_browser()
@@ -23,6 +30,7 @@ class BaseTest(unittest.TestCase):
         self.wait = WebDriverWait(self.driver, 10)
         self.driver.get(url=self.url)
         self.driver.maximize_window()
+        self.logger.info(self._testMethodName)
 
     def tearDown(self):
         self.driver.quit()

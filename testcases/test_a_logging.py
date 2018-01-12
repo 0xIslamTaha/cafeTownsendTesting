@@ -12,6 +12,7 @@ class LoggingTestCases(BaseTest):
         #. Press on "Login" button
         #. Check that login is done, Should succeed.
         """
+        self.logger.info(" [*] Login with provider credential, should succeed.")
         self.login(username=self.username, password=self.password)
         self.assertIn(self.username, self.get_text(element="greetings"))
 
@@ -25,6 +26,7 @@ class LoggingTestCases(BaseTest):
         #. Press on "Login" button
         #. Check that login is failed, Should succeed.
         """
+        self.logger.info(" [*] Login with wrong credential, should fail.")
         self.login(username=self.random_str(), password=self.random_str())
         self.assertIn("Invalid username or password!", self.get_text(element="invalid_login"))
 
@@ -39,8 +41,10 @@ class LoggingTestCases(BaseTest):
         #. Check that login is done, Should succeed.
         #. Logout, Should succeed.
         """
+        self.logger.info(" [*] Login with provider credential, should succeed.")
         self.login(username=self.username, password=self.password)
         self.assertIn(self.username, self.get_text(element="greetings"))
+        self.logger.info(" [*] Logout, should succeed.")
         self.click(element="logout")
         self.assertEqual('Login', self.get_text(element="login_submit"))
 

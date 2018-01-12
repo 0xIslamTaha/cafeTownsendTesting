@@ -6,6 +6,7 @@ from parameterized import parameterized
 class CreateEmployeesTestCases(BaseTest):
     def setUp(self):
         super().setUp()
+        self.logger.info(" [*] Create new user with empty first name, should fail.")
         self.login(username=self.username, password=self.password)
 
     def test001_create_new_user_with_valid_data(self):
@@ -20,12 +21,14 @@ class CreateEmployeesTestCases(BaseTest):
         last_name = self.random_str()
         start_date = self.random_date()
         email = self.random_email()
+        self.logger.info(" [*] Create new user : %s %s, should succeed." % (first_name, last_name))
         self.create_new_user(first_name=first_name,
                              last_name=last_name,
                              start_date=start_date,
                              email=email
                              )
         self.assertTrue(self.is_user(username="%s %s" % (first_name, last_name)))
+        self.logger.info(" [*] Delete user : %s %s." % (first_name, last_name))
         self.delete_user(username="%s %s" % (first_name, last_name))
 
     def test002_create_new_user_with_invalid_firstname(self):
@@ -36,6 +39,7 @@ class CreateEmployeesTestCases(BaseTest):
         #. Login to the system
         #. Create a user with empty first name, should fail.
         """
+        self.logger.info(" [*] Create new user with empty first name, should fail.")
         self.create_new_user(first_name='',
                              last_name=self.random_str(),
                              start_date=self.random_date(),
@@ -52,6 +56,7 @@ class CreateEmployeesTestCases(BaseTest):
         #. Login to the system
         #. Create a user with empty last name, should fail.
         """
+        self.logger.info(" [*] Create new user with empty last name, should fail.")
         self.create_new_user(first_name=self.random_str(),
                              last_name='',
                              start_date=self.random_date(),
@@ -74,6 +79,7 @@ class CreateEmployeesTestCases(BaseTest):
         #. Login to the system
         #. Create a user with invalid date, should fail.
         """
+        self.logger.info(" [*] Create new user with invalid email : %s, should fail." % date)
         self.create_new_user(first_name=self.random_str(),
                              last_name=self.random_str(),
                              start_date=date,
@@ -95,6 +101,7 @@ class CreateEmployeesTestCases(BaseTest):
         #. Login to the system
         #. Create a user with empty email, should fail.
         """
+        self.logger.info(" [*] Create new user with invalid email, should fail.")
         self.create_new_user(first_name=self.random_str(),
                              last_name='',
                              start_date=self.random_date(),
