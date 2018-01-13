@@ -4,19 +4,20 @@ This is a full automation testing framework to cover the main functionality test
 ## Framework Structure:
 ```
 .
+├── cafeTownsendTesting.log
 ├── config.ini
 ├── readme.md
 ├── requirements.txt
 ├── testcases
-│   ├── base_test.py
 │   ├── __init__.py
-│   ├── tc_a_logging.py
-│   ├── tc_b_create_employees.py
-│   └── tc_c_edit_delete_employees.py
+│   ├── test_a_logging.py
+│   ├── test_b_create_employees.py
+│   └── test_c_edit_delete_employees.py
 └── utilize
+    ├── base_test.py
     ├── elements.py
-    ├── __init__.py
-    └── utiliz.py
+    └── __init__.py
+
 ```
 
 ## Pre-requestes:
